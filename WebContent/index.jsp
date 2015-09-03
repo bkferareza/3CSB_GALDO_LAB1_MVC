@@ -7,7 +7,7 @@
 <title>Welcome to YOUniversity Store</title>
 </head>
 <body>
-<form action="StoreServlet" action="post">
+<form action="StoreServlet" method="post">
 	<pre>
 		Item:		  <input type="text" name="_item" required="required" /><br>
 		Quantity:	  <input type="number" name="_quantity" required="required" /><br>

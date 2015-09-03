@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <jsp:useBean id="outStoreBean" type ="model.StoreBean" scope = "request"/>
+ <jsp:useBean id="outStoreBean" type ="model.StoreBean" scope = "request"/>
 <!DOCTYPE html>
 <html>
 <head>

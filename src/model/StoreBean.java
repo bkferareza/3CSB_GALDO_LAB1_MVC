@@ -1,5 +1,5 @@
 package model;
-import java.text.DecimalFormat;
+
 
 
 public class StoreBean {
@@ -43,23 +43,19 @@ public class StoreBean {
 	}
 	public double get_evatPrice() {
 		_evatPrice=_grossAmount*.12;
-		return decDouble(_evatPrice);
+		return _evatPrice;
 	}
 	public void set_evatPrice(double _evatPrice) {
 		this._evatPrice = _evatPrice;
 	}
 	public double get_netPrice() {
 		_netPrice=_grossAmount + _evatPrice;
-		return decDouble(_netPrice);
+		return _netPrice;
 	}
 	public void set_netPrice(double _netPrice) {
 		this._netPrice = _netPrice;
 	}
-	public double decDouble(double d){
-		DecimalFormat df=new DecimalFormat("#.##");
-		return Double.parseDouble(df.format(d));
-	}
-	public static boolean luhn(String cc){
+	public static boolean luhns(String cc){
 		int sum = 0;
         boolean alternate = false;
         for (int i = cc.length() - 1; i >= 0; i--){

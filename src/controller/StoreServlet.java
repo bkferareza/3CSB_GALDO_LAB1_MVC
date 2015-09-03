@@ -15,7 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
-@WebServlet("/StoreServlet")
+
+@WebServlet(urlPatterns={"/StoreServlet"})
 public class StoreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	double _grossAmount;
@@ -28,18 +29,13 @@ public class StoreServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		
 	}
 
 	@SuppressWarnings("unused")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		double price = Double.parseDouble(request.getParameter("_price"));
-		double grossAmount = Double.parseDouble(request
-				.getParameter("_grossAmount"));
-		double evatPrice = Double.parseDouble(request
-				.getParameter("_evatPrice"));
-		double netPrice = Double.parseDouble(request.getParameter("_netPrice"));
 		String item = request.getParameter("_item");
 		String creditCard = request.getParameter("_creditCard");
 		int quantity = Integer.parseInt(request.getParameter("_quantity"));
@@ -47,17 +43,21 @@ public class StoreServlet extends HttpServlet {
 		StoreBean store = Factory.getInstance(_price, _grossAmount, _evatPrice,
 				_netPrice, _item, _creditCard, _quantity);
 
+		request.setAttribute("outStoreBean", store);
+		
 		try {
-			if (StoreBean.luhn(_creditCard) == false) {
+			if(StoreBean.luhns(_creditCard)==false){
 				throw new Exception();
 			}
+			
 			request.setAttribute("outStoreBean", store);
-			RequestDispatcher dispatch = request
-					.getRequestDispatcher("display.jsp");
-			dispatch.forward(request, response);
-		} catch (Exception e) {
-			RequestDispatcher rd = request.getRequestDispatcher("error.jsp");
+			
+			RequestDispatcher rd=request.getRequestDispatcher("display.jsp");
+			rd.forward(request, response);
+		}catch(Exception e){
+			RequestDispatcher rd=request.getRequestDispatcher("error.jsp");
 			rd.forward(request, response);
 		}
+		
 	}
 }
