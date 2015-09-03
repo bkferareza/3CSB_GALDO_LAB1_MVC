@@ -1,18 +1,20 @@
 package utility;
+import controller.InvalidCreditCard;
 import model.StoreBean;
 
+
+
 public class Factory {
-	public static StoreBean getInstance(double _price, double _netPrice, double _grossAmount, double _evatPrice, String _item, String _creditCard, int _quantity)
-	{
+			public static StoreBean getInstance(String item, double quantity,double price,
+							String creditCard) throws InvalidCreditCard
+		{
 		StoreBean store = new StoreBean();
-		store.set_price(_price);
-		store.set_netPrice(_netPrice);
-		store.set_grossAmount(_grossAmount);
-		store.set_evatPrice(_evatPrice);
-		store.set_item(_item);
-		store.set_creditCard(_creditCard);
-		store.set_quantity(_quantity);
+		store.setitem(item);
+		store.setquantity(quantity);
+		store.setprice(price);
+		store.setcreditCard(creditCard);
+		store.setCompute(price, quantity);
 		
 		return store;
-	}
+}
 }
